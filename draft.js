@@ -331,3 +331,32 @@ for (i = 0; i > MAX_ATTEMPT; i++) {
   }
   alert("available tries: " + (i + 1));
 }
+
+
+
+const MAX_ATTEMPT_1 = 5;
+let count = 0;
+while (true) {
+  let userInput = prompt("enter number:");
+  count++;
+  if (userInput >= 1 && userInput <= 50 && userInput % 7 === 0) {
+    alert("respect+");
+    break;
+  }
+  if (MAX_ATTEMPT_1 === count) {
+    alert("run out of tries :(");
+    break;
+  }
+  alert("try again");
+}
+
+const MAX_ATTEMPT_2 = 5;
+for (let count = 1; count <= MAX_ATTEMPT_2; count++) {
+  const userInput = prompt("enter number:");
+  if (userInput >= 1 && userInput <= 50 && userInput % 7 === 0) {
+    alert("welcome");
+    break;
+  }
+  alert("try again");
+}
+
