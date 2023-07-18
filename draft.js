@@ -50,14 +50,6 @@ if (d <= 0 || d % 2 !== 0 || d % 4 !== 0 || d % 7 !== 0) {
   console.log("win", d);
 }
 
-
-
-
-
-
-
-
-
 const incomeValue = prompt("enter number");
 /**
  * @param {number} incomeValue
@@ -71,7 +63,7 @@ const evenOddCheckFunction = function (incomeValue) {
     return "not a number";
   }
   if (Number.isInteger(Number(incomeValue)) === false) {
-    return 'not an integer'
+    return "not an integer";
   }
   if (incomeValue % 2 === 0) {
     return "even";
@@ -80,34 +72,26 @@ const evenOddCheckFunction = function (incomeValue) {
 };
 console.log(evenOddCheckFunction(incomeValue));
 
-
-const inputData1 = '100';
+const inputData1 = "100";
 const inputData2 = 100;
 /**
- * 
- * @param {*} inputData1 
- * @param {*} inputData2 
+ *
+ * @param {*} inputData1
+ * @param {*} inputData2
  * @returns {*}
  */
 const compareFunction = function (inputData1, inputData2) {
   if (typeof inputData1 === typeof inputData2) {
     if (inputData1 > inputData2) {
       return inputData1;
-    } if (inputData1 < inputData2) {
+    }
+    if (inputData1 < inputData2) {
       return inputData2;
     }
   }
-    return null;
+  return null;
 };
 console.log(compareFunction(inputData1, inputData2));
-
-
-
-
-
-
-
-
 
 const dayNumber = Number(
   prompt(
@@ -127,7 +111,6 @@ if (
 } else {
   console.log("not a day number");
 }
-
 
 const monthNumber = prompt("choose a month number");
 switch (monthNumber) {
@@ -156,13 +139,6 @@ switch (monthNumber) {
     break;
 }
 
-
-
-
-
-
-
-
 // Task 1
 
 const userAgeInput = prompt("enter age:");
@@ -175,24 +151,31 @@ if (
   userAgeNumber < 0
 ) {
   console.log("error");
-}  else if (userAgeNumber >= 0 && userAgeNumber <= 1) { // Щоб не використовувати else if всюди, треба залишити його в цьому рядку, бо при приведенні userAgeInput зі значенням null або "" до Number в консоль лізе не тільки "error", а і "baby". Або ж як варіант можна використовувати всюди else if та замінити останню умову на else, як показано в закоментованій частині нижче
+} else if (userAgeNumber >= 0 && userAgeNumber <= 1) {
+  // Щоб не використовувати else if всюди, треба залишити його в цьому рядку, бо при приведенні userAgeInput зі значенням null або "" до Number в консоль лізе не тільки "error", а і "baby". Або ж як варіант можна використовувати всюди else if та замінити останню умову на else, як показано в закоментованій частині нижче
   console.log("baby");
-}  if (userAgeNumber >= 2 && userAgeNumber <= 5) {
-  console.log("kinder");
-}  if (userAgeNumber >= 6 && userAgeNumber <= 11) {
-  console.log("child");
-}  if (userAgeNumber >= 12 && userAgeNumber <= 17) {
-  console.log("teenager");
-}  if (userAgeNumber >= 18 && userAgeNumber <= 64) {
-  console.log("adult");
-}  if (userAgeNumber >= 65 && userAgeNumber <= 99) {
-  console.log("old");
-}  if (userAgeNumber >= 100 && userAgeNumber <= 150) {
-  console.log("retired");
-}  if (userAgeNumber > 150) {
-  console.log('not a human')
 }
-
+if (userAgeNumber >= 2 && userAgeNumber <= 5) {
+  console.log("kinder");
+}
+if (userAgeNumber >= 6 && userAgeNumber <= 11) {
+  console.log("child");
+}
+if (userAgeNumber >= 12 && userAgeNumber <= 17) {
+  console.log("teenager");
+}
+if (userAgeNumber >= 18 && userAgeNumber <= 64) {
+  console.log("adult");
+}
+if (userAgeNumber >= 65 && userAgeNumber <= 99) {
+  console.log("old");
+}
+if (userAgeNumber >= 100 && userAgeNumber <= 150) {
+  console.log("retired");
+}
+if (userAgeNumber > 150) {
+  console.log("not a human");
+}
 
 // const userAgeInput = prompt("enter age:");
 // const userAgeNumber = Number(userAgeInput);
@@ -222,15 +205,9 @@ if (
 //   console.log('not a human')
 // }
 
-
-
-
-
-
 // Task 2
 
 // Variant 1
-
 
 const number01 = 0.5;
 const number02 = 10;
@@ -270,7 +247,6 @@ const calcFunction01 = function (number01, number02, sign01) {
 console.log(calcFunction01(number01, number02, sign01));
 
 // Variant 2
-
 
 const number03 = 0.25;
 const number04 = 10;
@@ -314,9 +290,6 @@ const calcFunction02 = function (number03, number04, sign02) {
 };
 calcFunction02(number03, number04, sign02);
 
-
-
-
 const PASSWORD = "qwerty";
 const MAX_ATTEMPT = 3;
 for (i = 0; i > MAX_ATTEMPT; i++) {
@@ -331,8 +304,6 @@ for (i = 0; i > MAX_ATTEMPT; i++) {
   }
   alert("available tries: " + (i + 1));
 }
-
-
 
 const MAX_ATTEMPT_1 = 5;
 let count = 0;
@@ -359,9 +330,6 @@ for (let count = 1; count <= MAX_ATTEMPT_2; count++) {
   }
   alert("try again");
 }
-
-
-
 
 // Task 1
 
@@ -475,13 +443,13 @@ console.log("Task 7:", getFactorial(100));
 
 // Task 8
 
+function getRandomInteger(min, max) {
+  return Math.floor(
+    Math.random() * (Math.floor(max) - Math.ceil(min) + 1) + Math.ceil(min)
+  );
+}
+const SECRET_NUMBER = getRandomInteger();
 const tryToGuessNumber = function (min, max) {
-  function getRandomInteger(min, max) {
-    return Math.floor(
-      Math.random() * (Math.floor(max) - Math.ceil(min) + 1) + Math.ceil(min)
-    );
-  }
-  const SECRET_NUMBER = getRandomInteger(min, max);
   let amountAttempts = 0;
   while (true) {
     const userInput = prompt("guess the seeeeecret nuuuumber!");
@@ -509,11 +477,6 @@ const tryToGuessNumber = function (min, max) {
   return SECRET_NUMBER;
 };
 console.log("Task 8: Secret number this time was", tryToGuessNumber(1, 100));
-
-
-
-
-
 
 const obj1 = {};
 const obj2 = Object();
@@ -581,12 +544,42 @@ area: ${this.area}
 language: ${this.language}`;
   };
   this.getDensity = function () {
-    return this.population / this.area + ' persons per km2 at ' + this.name;
+    return this.population / this.area + " persons per km2 at " + this.name;
   };
 }
 
 const country1 = new Country("Abubu Kingdom", 40000, 250000, "abubian");
 const country2 = new Country("White Islands", 40000, 250000, "aborigen");
 const country3 = new Country("Rajastan", 40000, 250000, "arabic");
-console.log(country1.getInfo())
+console.log(country1.getInfo());
 console.log(country2.getDensity());
+
+// const createFamilyObject = function (members = 3) {
+//   const family = {};
+//   for (let index = 0; index < members; index++) {
+//     const nameMember = prompt("enter member`s name:");
+//     const statusMember = prompt("enter member`s status:");
+//     family[nameMember] = statusMember;
+//   }
+//   return family;
+// };
+// const userFamily = createFamilyObject();
+// console.log(userFamily);
+// console.log(createFamilyObject());
+
+// function User(firstName, lastName, age) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.age = age;
+// }
+// function PrototypeUser() {
+//     this.fullName = function () {
+//     return `${this.firstName} ${this.lastName}`;
+//     }
+// }
+// User.prototype = new PrototypeUser();
+
+// const fisrtUser = new User("John", "Black", 31);
+// console.log(fisrtUser);
+// console.log(fisrtUser.fullName());
+
