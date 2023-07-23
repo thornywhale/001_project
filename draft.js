@@ -583,3 +583,148 @@ console.log(country2.getDensity());
 // console.log(fisrtUser);
 // console.log(fisrtUser.fullName());
 
+function Product(name, price, quantity, sale = 0) {
+  this.productName = String(name);
+  this.productPrice = Number(price);
+  this.productQuantity = Number(quantity);
+  this.productSale = Number(sale);
+}
+function ProductPrototype() {
+  this.showinfo = function () {
+    return `
+    |Загальна інформація|
+    Товар: ${this.productName}
+    Ціна: ${this.productPrice} UAH
+    Наявна кількість: ${this.productQuantity} шт.
+    Знижка: ${this.productSale} %`;
+  };
+  this.getSalePrice = function () {
+    return (this.productPrice / 100) * (100 - this.productSale);
+  };
+  this.setSaleToPrice = function () {
+    if (this.productSale !== 0) {
+      return `Акційна ціна - ${this.getSalePrice()} UAH`;
+    }
+    return "Знижка відсутня";
+  };
+  this.buyAmountProduct = function () {
+    if (this.productSale !== 0 && this.productQuantity >= 300) { // нехай 300 - достатня кількість для відвантаження
+      return `Варітсть товару на складі:
+      без знижки - ${this.productPrice * this.productQuantity} UAH
+      зі знижкою - ${this.getSalePrice() * this.productQuantity} UAH`;
+    } if (this.productQuantity >= 300){
+      return `Варітсть товару на складі: ${this.productPrice * this.productQuantity} UAH`;
+    }
+    return null;
+  };
+}
+Product.prototype = new ProductPrototype();
+
+const appleGold = new Product("Яблуко Голд", 7, 12000, 30);
+console.log(appleGold.showinfo());
+console.log(appleGold.setSaleToPrice());
+console.log(appleGold.buyAmountProduct());
+const pearStandart = new Product("Груша Звичайна", 9.5, 8000, 10);
+console.log(pearStandart.showinfo());
+console.log(pearStandart.setSaleToPrice());
+console.log(pearStandart.buyAmountProduct());
+const mangoStandart = new Product("Манго Звичайне", 85, 4000);
+console.log(mangoStandart.showinfo());
+console.log(mangoStandart.setSaleToPrice());
+console.log(mangoStandart.buyAmountProduct());
+const kiwiNewZeland = new Product("Ківі Нова Зеландія", 75, 250, 20);
+console.log(kiwiNewZeland.showinfo());
+console.log(kiwiNewZeland.setSaleToPrice());
+console.log(kiwiNewZeland.buyAmountProduct());
+
+
+
+
+
+
+
+// const mainArray = [2, 10, 10, 2, 4, 6, 57];
+
+// // task 1
+
+// const checkValueInArray = function (array, number) {
+//   if (Number.isNaN(number) || Array.isArray(array) === false) {
+//     console.log("enter array and number!");
+//   }
+//   return array.includes(number);
+// };
+// console.log(checkValueInArray(mainArray, 6));
+
+// task 2
+
+// const checkTwiceValueInArray = function (array) {
+//   if (Array.isArray(array) === false) {
+//     console.log("enter array!");
+//   }
+//   if (array.length === 0) {
+//     return false;
+//   }
+//   if (array.indexOf(el + 1) - array.indexOf(el) === 1) {
+//     return true;
+//   }
+//   return false;
+// };
+// console.log(checkTwiceValueInArray(mainArray));
+
+
+
+
+
+
+// const arr1 = [1, 2, 3, 4, 5];
+
+// arr1.splice(3);
+// console.log(arr1);
+
+// arr1.splice(1, 2);
+// console.log(arr1);
+
+// arr1.splice(1, 3, "a", "b");
+// console.log(arr1);
+
+
+
+
+
+/**
+ * @param {array} array
+ * @returns {array}
+ */
+const getDuplicatesOrEmptyArray = function (array) {
+  const newArray = array.concat();
+  for (let index = 0; index < newArray.length; index++) {
+    let checkCursor = 1;
+    if (checkCursor === newArray.length) {
+      index++;
+      let checkCursor = 1;
+    }
+    if (newArray[index] === newArray[index + checkCursor]) {
+      newArray.shift();
+    }
+    if (newArray[index] !== newArray[index + checkCursor]) {
+      checkCursor++;
+    }
+  }
+  return newArray;
+};
+console.log(getDuplicatesOrEmptyArray(testArray));
+
+/**
+ * @param {array} array
+ * @returns {array}
+ */
+const getDuplicatesOrEmptyArray2 = function (array) {
+  const newArray2 = [];
+  array.forEach(element, index => {
+    array.includes(element) && array.indexOf(element) !== index
+      ? newArray2.push(element)
+      : array.shift();
+  });
+  return newArray2;
+};
+console.log(getDuplicatesOrEmptyArray2(testArray));
