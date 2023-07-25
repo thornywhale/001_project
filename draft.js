@@ -728,3 +728,48 @@ const getDuplicatesOrEmptyArray2 = function (array) {
   return newArray2;
 };
 console.log(getDuplicatesOrEmptyArray2(testArray));
+
+
+
+
+
+testArray = [1, 2, 3, 1, 5, 6, 1, 2, 5];
+
+/**
+ * @param {Array} array
+ * @returns {Array}
+ */
+const getDuplicatesOrEmptyArray3 = function (array) {
+  const newArray = [];
+  array.forEach((element) => {
+    if (newArray.includes(element)) {
+      return;
+    }
+    if (array.indexOf(element) !== array.lastIndexOf(element)) {
+      newArray.push(element);
+    }
+  });
+  return newArray;
+};
+console.log(getDuplicatesOrEmptyArray3(testArray));
+
+const sumSimple = (...args) => {
+  let sum = 0;
+  // for (let index = 0; index < args.length; index++) {
+  //   sum = args[index];
+  // }
+  args.forEach((arg) => {
+    sum += arg;
+  });
+  return sum;
+};
+const result = sumSimple(1, 2, 3, 1);
+console.log(result);
+
+const sumWithReduce = (...args) => args.reduce((sum, arg) => sum + arg, 0);
+const result2 = sumWithReduce(1, 6, 8, 8);
+console.log(result2);
+
+
+
+
