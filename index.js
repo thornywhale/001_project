@@ -1,51 +1,49 @@
 "use strict";
+const testString = `rhgbvoihgo4gCJ%^%^CU%Ct34V
+btgmhym,jyUY$i5hrtjjtrjy4390tcy4934cto3954vyyg
+fgnfjytdjmdsthtr4554h4h4ty545rjjrjdtfjttrjrrsr
+059u73460bvn4tc45U%^%^HU43tmJ%$O%$HO%$J%HG%JH%
+$eo be ds'a hep;hBTRNGDNFSM$%FKOOOOOOOOO@$!.,/`;
 
-/**
- *
- * @param {number | BigInt} number
- * @returns {Error | number | BigInt}
- */
-function getFactorialRecursion(number) {
-  if (typeof number !== "number" && typeof number !== "bigint") {
-    throw new TypeError("Not a number");
-  }
-  if (typeof number === "number") {
-    if (
-      Number.isInteger(Number(number)) === false ||
-      Number.isFinite(number) === false ||
-      Number.isNaN(number) ||
-      number < 0
-    ) {
-      throw new RangeError(
-        "Incorrect value: parameter must be integer, finite and positive"
-      );
-    }
-    if (number === 0 || number === 1) {
-      return 1;
-    }
-    if (number > 21) {
-      return BigInt(number) * getFactorialRecursion(BigInt(number) - 1n);
-    }
-    return number * getFactorialRecursion(number - 1);
-  }
-  if (number === 0n || number === 1n) {
-    return 1n;
-  } else {
-    return BigInt(number) * getFactorialRecursion(BigInt(number) - 1n);
-  }
-}
+// variant 1
+const countVowelInString = (string, sep = "") => {
+  const all = string.split(sep);
+  const consonants = all.filter(
+    (letter) =>
+      letter !== "a" &&
+      letter !== "A" &&
+      letter !== "e" &&
+      letter !== "E" &&
+      letter !== "i" &&
+      letter !== "I" &&
+      letter !== "o" &&
+      letter !== "O" &&
+      letter !== "u" &&
+      letter !== "U" &&
+      letter !== "y" &&
+      letter !== "Y"
+  );
+  return all.length - consonants.length;
+};
+//variant 2
+const countVowelInString2 = (string, sep = "") => {
+  const all = string.split(sep);
+  const vowels = ["a", "A", "e", "E", "i", "I", "o", "O", "u", "U", "y", "Y"];
+  const consonants = all.filter((letter) => !vowels.includes(letter));
+  return all.length - consonants.length;
+};
 
 try {
-  console.log(getFactorialRecursion(10476));
+  console.log(
+    "First variant. Vowels in string: " + countVowelInString(testString)
+  );
+  console.log(
+    "Second variant. Vowels in string: " + countVowelInString2(testString)
+  );
 } catch (error) {
-  console.log("ERROR:", error);
-  if (error instanceof RangeError) {
-    alert("incorrect range of value");
-  } else if (error instanceof TypeError) {
-    alert("incorrect type of value or type remix");
+  if (error instanceof TypeError) {
+    alert("ONLY STRING!!!");
   } else {
-    alert("unknown error");
+    alert("unknown error, sorry");
   }
-} finally {
-  console.log("finally string");
 }
