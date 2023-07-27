@@ -6,6 +6,13 @@ fgnfjytdjmdsthtr4554h4h4ty545rjjrjdtfjttrjrrsr
 $eo be ds'a hep;hBTRNGDNFSM$%FKOOOOOOOOO@$!.,/`;
 
 // variant 1
+
+/**
+ *
+ * @param {String} string
+ * @param {String} sep
+ * @returns
+ */
 const countVowelInString = (string, sep = "") => {
   const all = string.split(sep);
   const consonants = all.filter(
@@ -25,11 +32,23 @@ const countVowelInString = (string, sep = "") => {
   );
   return all.length - consonants.length;
 };
+
 //variant 2
-const countVowelInString2 = (string, sep = "") => {
+
+/**
+ *
+ * @param {String} string
+ * @param {String} sep
+ * @param {Array} wanted
+ * @returns
+ */
+const countVowelInString2 = (
+  string,
+  sep = "",
+  wanted = ["a", "A", "e", "E", "i", "I", "o", "O", "u", "U", "y", "Y"]
+) => {
   const all = string.split(sep);
-  const vowels = ["a", "A", "e", "E", "i", "I", "o", "O", "u", "U", "y", "Y"];
-  const consonants = all.filter((letter) => !vowels.includes(letter));
+  const consonants = all.filter((letter) => !wanted.includes(letter));
   return all.length - consonants.length;
 };
 
