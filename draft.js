@@ -830,3 +830,95 @@ try {
 
 
 
+"use strict";
+const testString = `rhgbvoihgo4gC  J%^%^CU%Ct34V
+btgmhym,jyUY$i5h  rtjjtrjy4390tcy4934cto3954vyyg
+fgnfjytdjmdsthtr4554h4h4ty5  45rjjrjdtfjttrjrrsr
+059u734 60bvn4tc45U%^%^HU43tmJ%$O% $HO%$J%HG%JH%
+$eo be ds'a hep;hBTR  NGDNFSM$%FKOOOOOOOOO@$!.,/`;
+
+// variant 1
+
+/**
+ *
+ * @param {String} string
+ * @param {String} sep
+ * @returns
+ */
+const countVowelInString = (string, sep = "") => {
+  const all = string.split(sep);
+  const consonants = all.filter(
+    (letter) =>
+      letter !== "a" &&
+      letter !== "A" &&
+      letter !== "e" &&
+      letter !== "E" &&
+      letter !== "i" &&
+      letter !== "I" &&
+      letter !== "o" &&
+      letter !== "O" &&
+      letter !== "u" &&
+      letter !== "U" &&
+      letter !== "y" &&
+      letter !== "Y"
+  );
+  return all.length - consonants.length;
+};
+
+//variant 2
+
+/**
+ *
+ * @param {String} string
+ * @param {String} sep
+ * @param {Array} wanted
+ * @returns
+ */
+const countVowelInString2 = (
+  string,
+  sep = "",
+  wanted = ["a", "A", "e", "E", "i", "I", "o", "O", "u", "U", "y", "Y"]
+) => {
+  const all = string.split(sep);
+  const consonants = all.filter((letter) => !wanted.includes(letter));
+  return all.length - consonants.length;
+};
+
+try {
+  console.log(
+    "First variant. Vowels in string: " + countVowelInString(testString)
+  );
+  console.log(
+    "Second variant. Vowels in string: " + countVowelInString2(testString)
+  );
+} catch (error) {
+  if (error instanceof TypeError) {
+    alert("ONLY STRING!!!");
+  } else {
+    alert("unknown error, sorry");
+  }
+}
+
+
+
+
+class Worker {
+  constructor(name, surname, moneyPerDay, workDaysEnded) {
+    this.name = name;
+    this.surname = surname;
+    this.moneyPerDay = moneyPerDay;
+    this.workDaysEnded = workDaysEnded;
+  }
+  getSalary() {
+    return this.workDaysEnded * this.moneyPerDay;
+  }
+  static workersAmount = 12;
+  static createTestWorker() {
+    return new Worker('name', 'surname', 0, 0);
+  }
+}
+const worker01 = new Worker("Jack", "Jackson", 2000, 18);
+const testWorker = Worker.createTestWorker();
+console.log(worker01);
+console.log(worker01.getSalary());
+console.log(testWorker);
