@@ -898,27 +898,3 @@ try {
     alert("unknown error, sorry");
   }
 }
-
-
-
-
-class Worker {
-  constructor(name, surname, moneyPerDay, workDaysEnded) {
-    this.name = name;
-    this.surname = surname;
-    this.moneyPerDay = moneyPerDay;
-    this.workDaysEnded = workDaysEnded;
-  }
-  getSalary() {
-    return this.workDaysEnded * this.moneyPerDay;
-  }
-  static workersAmount = 12;
-  static createTestWorker() {
-    return new Worker('name', 'surname', 0, 0);
-  }
-}
-const worker01 = new Worker("Jack", "Jackson", 2000, 18);
-const testWorker = Worker.createTestWorker();
-console.log(worker01);
-console.log(worker01.getSalary());
-console.log(testWorker);
