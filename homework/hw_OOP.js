@@ -106,19 +106,23 @@ class Cylinder extends Figure3D {
   }
 }
 
-const footballBall = new Sphere(1);
-const strangeBook = new Cube(4);
-const glassVase = new Cylinder(0.25, 4);
+try {
+  const footballBall = new Sphere(1);
+  const strangeBook = new Cube(4);
+  const glassVase = new Cylinder(0.25, 4);
 
-console.log(footballBall);
-console.log(footballBall.getVolume());
-console.log(strangeBook);
-console.log(strangeBook.getVolume());
-console.log(glassVase);
-console.log(glassVase.getVolume());
-logVolume3DFigure(footballBall);
-logVolume3DFigure(strangeBook);
-logVolume3DFigure(glassVase);
+  console.log(footballBall);
+  console.log(footballBall.getVolume());
+  console.log(strangeBook);
+  console.log(strangeBook.getVolume());
+  console.log(glassVase);
+  console.log(glassVase.getVolume());
+  logVolume3DFigure(footballBall);
+  logVolume3DFigure(strangeBook);
+  logVolume3DFigure(glassVase);
+} catch (error) {
+  alert("ERROR");
+}
 
 function getVolume3DFigure(figure) {
   return figure.getVolume();
