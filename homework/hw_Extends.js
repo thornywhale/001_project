@@ -254,23 +254,27 @@ class VirtualGoods extends Goods {
   }
 }
 
-const pizzaDefault = new Goods("Pizza Standart", 120, "UAH", 180);
-pizzaDefault.getInfo();
-pizzaDefault.buy();
-pizzaDefault.buyAll();
+try {
+  const pizzaDefault = new Goods("Pizza Standart", 120, "UAH", 180);
+  pizzaDefault.getInfo();
+  pizzaDefault.buy();
+  pizzaDefault.buyAll();
 
-const avocadoSalad = new PhysicalGoods(
-  "Salad with avocado",
-  250,
-  "UAH",
-  100,
-  200
-);
-avocadoSalad.getInfo();
-avocadoSalad.buy();
-avocadoSalad.buyAll();
+  const avocadoSalad = new PhysicalGoods(
+    "Salad with avocado",
+    250,
+    "UAH",
+    100,
+    200
+  );
+  avocadoSalad.getInfo();
+  avocadoSalad.buy();
+  avocadoSalad.buyAll();
 
-const durianDefault = new VirtualGoods("Durian fruit", 60, "USD", 50, 50);
-durianDefault.getInfo();
-durianDefault.buy();
-durianDefault.buyAll();
+  const durianDefault = new VirtualGoods("Durian fruit", 60, "USD", 50, 50);
+  durianDefault.getInfo();
+  durianDefault.buy();
+  durianDefault.buyAll();
+} catch (error) {
+  alert("ERROR!");
+}
