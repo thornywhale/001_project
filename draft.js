@@ -898,3 +898,289 @@ try {
     alert("unknown error, sorry");
   }
 }
+
+
+// stack example
+
+class Stack {
+  constructor(maxSize, ...args) {
+    this._maxSize = maxSize;
+    this._size = 0;
+    for (const arg of args) {
+      this.push(arg);
+    }
+  }
+  get size() {
+    return this._size;
+  }
+  get isEmpty() {
+    return this._size === 0;
+  }
+  push(arg) {
+    if (this._size >= this._maxSize) {
+      throw new RangeError("stack overflow");
+    }
+    this[`_${this._size}`] = arg;
+    return ++this._size;
+  }
+  peek() {
+    return this[`_${this._size - 1}`];
+  }
+  pop() {
+    if (this._size === 0) {
+      return;
+    }
+    const lastElement = this[`_${this._size - 1}`];
+    delete this[`_${this._size - 1}`];
+    this._size--;
+    return lastElement;
+  }
+}
+const stack01 = new Stack(5, 20, 61, 44, 12);
+console.log(stack01);
+
+const options = {
+  brackets: {
+    "(": ")",
+    "{": "}",
+    "[": "]",
+  },
+  lapky: {
+    "`": "`",
+    "'": "'",
+  },
+  isStrict: false,
+};
+/**
+ *
+ * @param {string} str
+ * @param {object} options
+ * @param {object} options.brackets
+ * @returns {boolean}
+ */
+const checkSequence = (str, options) => {
+  const stack = new Stack(str.length);
+  const closedBrackets = Object.values(options.brackets);
+  for (const symbol of str) {
+    if (options.brackets[symbol]) {
+      stack.push(symbol);
+      continue;
+    }
+    if (stack.isEmpty) {
+      return false;
+    }
+    const lastSymbolInStack = stack.peek();
+    const correctBracket = options.brackets[lastSymbolInStack];
+    if (symbol === correctBracket) {
+      stack.pop();
+    } else if (closedBrackets.includes(symbol)) {
+      return false;
+    }
+  }
+  return stack.isEmpty;
+};
+console.log(checkSequence(")()()", options));
+
+
+"use strict";
+
+class IteratorLinkedList {
+  constructor(list) {
+    this.list = list;
+    this.currentItem = null;
+  }
+  next() {
+    this.currentItem =
+      this.currentItem === null ? this.list.head : this.currentItem.next;
+    return {
+      value: this.currentItem ? this.currentItem : undefined,
+      done: this.currentItem === null,
+    };
+  }
+}
+
+class ListItem {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+    this.prev = null;
+  }
+  get data() {
+    return this._data;
+  }
+  set data(data) {
+    this._data = data;
+  }
+}
+
+class LinkedList {
+  constructor(...args) {
+    this.length = 0;
+    this.head = null;
+    this.tail = null;
+    for (const arg of args) {
+      this.push(arg);
+    }
+  }
+  [Symbol.iterator]() {
+    return new IteratorLinkedList(this);
+  }
+
+  push(arg) {
+    const item = new ListItem(arg);
+    if (this.length === 0) {
+      this.head = item;
+      this.tail = item;
+    } else {
+      item.prev = this.tail;
+      this.tail.next = item;
+      this.tail = item;
+    }
+    return ++this.length;
+  }
+
+  unshift(arg) {
+    const item = new ListItem(arg);
+    if (this.length === 0) {
+      this.head = item;
+      this.tail = item;
+    } else {
+      item.next = this.head;
+      this.head.prev = item;
+      this.head = item;
+    }
+    return ++this.length;
+  }
+
+  // add(arg){
+  //   const item = new ListItem(arg);
+  //   if (this.length === 0) {
+  //     this.head = item;
+  //     this.tail = item;
+  //   } else {
+  //   }
+  // }
+
+  // pop() {
+  //   const popped = this.tail;
+  //   if (this.length === 0) {
+  //     throw new Error("empty list");
+  //   } else {
+
+  //     --this.length;
+  //     return popped;
+  //   }
+  // }
+
+  // shift(){}
+
+  // delete(item) {
+  //   if (this.length === 0) {
+  //     throw new Error("empty list");
+  //   }
+  //   for (const element of this) {
+  //     if (element.data === item) {
+
+  //       --this.length
+  //       console.log("deleted:\n", element);
+  //       return element;
+  //     }
+  //     return false;
+  //   }
+  // }
+
+  search(key) {
+    for (const item of this) {
+      if (item.data === key) return item;
+    }
+    return null;
+  }
+}
+
+const list01 = new LinkedList(1, 1.5, 2);
+console.log(...list01);
+console.log(list01);
+
+list01.unshift(0.5);
+console.log(...list01);
+console.log(list01);
+
+// list01.pop();
+// console.log(...list01);
+// console.log(list01);
+
+// queue example
+
+class Queue {
+  constructor(...args) {
+    this._head = 0;
+    this._tail = 0;
+    for (const arg of args) {
+      this.enQueue(arg);
+    }
+  }
+  get size() {
+    return this._tail - this._head;
+  }
+  enQueue(value) {
+    this[`_${this._head}`] = value;
+    this._tail++;
+    return this.size;
+  }
+  deQueue() {
+    const deletedItem = this[`_${this._head}`];
+    delete this[`_${this._head}`];
+    this._head++;
+    return deletedItem;
+  }
+  peek() {
+    return this[`_${this._head}`];
+  }
+}
+
+const queue1 = new Queue("one", "two", "three", "four", "five", "six");
+const queue2 = new Queue(1, 2, 3);
+const mergeQueue = (queue1, queue2) => {
+  const newQueue = new Queue();
+  //доки (while) у нас є елементи в будь якій черзі
+  while (queue1.size || queue2.size) {
+    //якщо є елементи у першій черзі -
+    if (queue1.size) {
+      //забрати елемент з голови (deQueue) і додати до кінця нової черги (enQueue)
+      newQueue.enQueue(queue1.deQueue());
+    }
+    //якщо є елементи у другій черзі -
+    if (queue2.size) {
+      //забрати елемент з голови (deQueue) і додати до кінця нової черги (enQueue)
+      newQueue.enQueue(queue2.deQueue());
+    }
+  }
+  return newQueue;
+};
+console.log(mergeQueue(queue1, queue2));
+
+// Map example
+
+const obj01 = {
+  1: 35,
+  6: "hg",
+  ht4hj: 6976,
+};
+const arr1 = [4, 8, "123"];
+const map1 = new Map([
+  [10, "htr"],
+  [64, 43],
+]);
+const map2 = new Map();
+map2.set(1, 1);
+map2.set(45534, "jyj54");
+map2.set([35], []);
+map2.set(arr1, obj01);
+map2.set(obj01, undefined);
+map2.set(undefined, arr1);
+map2.delete();
+map2.delete(45534);
+console.log(map1);
+console.log(map2);
+
+// Set example
