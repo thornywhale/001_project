@@ -1136,6 +1136,9 @@ class Queue {
   peek() {
     return this[`_${this._head}`];
   }
+  [Symbol.iterator]() {
+    return new IteratorQueue(this);
+  }
 }
 
 const queue1 = new Queue("one", "two", "three", "four", "five", "six");
@@ -1158,6 +1161,29 @@ const mergeQueue = (queue1, queue2) => {
   return newQueue;
 };
 console.log(mergeQueue(queue1, queue2));
+
+class IteratorQueue {
+  constructor(queue) {
+    this.queue = queue;
+    this.index = this.queue._head;
+  }
+  next() {
+    if (this.index < this.queue._tail) {
+      const item = this.queue[`_${this.index}`];
+      this.index++;
+      return { value: item, done: false };
+    } else {
+      return { value: undefined, done: true };
+    }
+  }
+}
+
+// Queue Iterator checkup
+
+for (const item of queue1) {
+  console.log(item);
+}
+console.log(...queue2);
 
 // Map example
 
