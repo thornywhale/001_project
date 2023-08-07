@@ -52,3 +52,11 @@ for (const item of queue1) {
   console.log(item);
 }
 console.log(...queue2);
+
+// index.js:52 one
+// index.js:52 two
+// index.js:52 three
+// index.js:52 four
+// index.js:52 five
+// index.js:52 six
+// index.js:54 1 2 3
